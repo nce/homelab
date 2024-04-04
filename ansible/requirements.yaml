@@ -1,0 +1,7 @@
+---
+# ansible-galaxy install -r requirements.yaml
+roles:
+- name: geerlingguy.docker
+
+collections:
+  - name: community.docker

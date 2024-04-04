@@ -1,0 +1,38 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+# Icons: https://github.com/walkxcode/dashboard-icons/tree/main
+
+- Homelab:
+  - Adguard:
+      icon: adguard-home.svg
+      href: {{ docker.conf.adguard.url }}
+      container: adguardhome
+      widget:
+        type: adguard
+        url: {{ docker.conf.adguard.url }}
+        username: admin
+        password: {{ docker.conf.adguard.pw }}
+  - Traefik:
+      icon: traefik.svg
+      href: {{ docker.conf.traefik.url }}
+      container: traefik
+      widget:
+        type: traefik
+        url: {{ docker.conf.traefik.url }}
+  - Portainer:
+      icon: portainer.svg
+      href: {{ docker.conf.portainer.url }}
+      container: portainer-portainer-1
+      widget:
+        type: portainer
+        url: {{ docker.conf.portainer.url }}
+        env: 2
+        key: {{ docker.conf.portainer.key }}
+- Services:
+  - empty:
+- External:
+  - whoami:
+      href: https://whoami.nce.wtf
+      icon: ghost-light.png
+      siteMonitor: https://whoami.nce.wtf

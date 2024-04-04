@@ -1,0 +1,18 @@
+---
+- name: Portainer Dir
+  become: true
+  ansible.builtin.file:
+    path: /portainer/env_files
+    state: directory
+    owner: "{{ ansible_user }}"
+
+- name: Setup portainer
+  ansible.builtin.template:
+    src: portainer.yaml
+    dest: ~/docker/portainer/docker-compose.yaml
+
+- name: Deploy portainer
+  community.docker.docker_compose_v2:
+    project_src: ~/docker/portainer
+    files:
+    - docker-compose.yaml

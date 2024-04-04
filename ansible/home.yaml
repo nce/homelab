@@ -1,0 +1,22 @@
+---
+- hosts: home
+  roles:
+    - name: common
+      tags:
+        - default
+
+    - name: geerlingguy.docker
+      when: install_docker
+      become: true
+      tags:
+        - docker
+
+    - name: portainer
+      when: install_docker
+      tags:
+        - portainer
+
+    - name: dockerconf
+      when: install_docker
+      tags:
+        - dockerconf

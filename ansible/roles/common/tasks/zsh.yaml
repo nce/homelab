@@ -1,0 +1,33 @@
+---
+- name: Install Oh My Zsh
+  ansible.builtin.git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+    depth: 1
+
+- name: Install zsh-user plugin
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/{{ item }}.git
+    dest: ~/.oh-my-zsh/custom/plugins/{{ item }}
+    depth: 1
+  loop:
+    - zsh-autosuggestions
+    - zsh-completions
+    - zsh-syntax-highlighting
+
+- name: Install autocompletee plugin
+  ansible.builtin.git:
+    repo: https://github.com/marlonrichert/zsh-autocomplete.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autocomplete
+    depth: 1
+
+- name: Copy .zshrc
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: ~/.zshrc
+
+- name: Change user shell to zsh 
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh

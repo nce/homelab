@@ -1,0 +1,16 @@
+---
+- name: Config traefik
+  ansible.builtin.include_tasks: 
+    file: traefik.yaml
+    apply:
+      tags:
+        - traefik
+  when: docker.traefik
+
+- name: Config homepage
+  ansible.builtin.include_tasks: 
+    file: homepage.yaml
+    apply:
+      tags:
+        - homepage
+  when: docker.homepage

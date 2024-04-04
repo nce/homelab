@@ -1,0 +1,8 @@
+theme: dark
+
+layout:
+  Homelab:
+    icon: mdi-server-#FFFFFF
+  Services:
+  External:
+    icon: mdi-web-check-#FFFFFF

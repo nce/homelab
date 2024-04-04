@@ -1,0 +1,7 @@
+home:
+  hosts:
+    t8:
+      ansible_host: 192.168.1.221
+      ansible_user: nce
+      ansible_become_password: "{{ t8.sudo_pw }}"
+      install_docker: true

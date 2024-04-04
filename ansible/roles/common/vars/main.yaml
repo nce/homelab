@@ -1,0 +1,12 @@
+---
+default_packages:
+  - htop
+  - sudo
+  - vnstat
+  - iftop
+  - vim
+  - curl
+  - exa # eza is not availabel on deb
+  - bat
+  - git
+  - zsh

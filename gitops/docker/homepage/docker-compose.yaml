@@ -1,0 +1,19 @@
+---
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v0.8.11
+    container_name: homepage
+    networks:
+      - proxy
+    volumes:
+      - /home/nce/docker/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.home.rule=Host(`home.nce.wtf`)"
+      - "traefik.http.services.home.loadbalancer.server.port=3000"
+      - "traefik.http.routers.home.entrypoints=websecure"
+networks:
+  proxy:
+    external: true

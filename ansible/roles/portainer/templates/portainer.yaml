@@ -1,0 +1,23 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:2.20.1
+    networks:
+      - proxy
+    ports:
+      - 9443:9443
+    volumes:
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /portainer/env_files:/env_files
+    restart: unless-stopped
+    command:
+      - "--http-enabled"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.container.rule=Host(`container.home.nce.wtf`)"
+      - "traefik.http.services.container.loadbalancer.server.port=9000"
+      - "traefik.http.routers.container.entrypoints=websecure"
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,22 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/service-widgets
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+
+- openmeteo:
+    label: {{ docker.conf.homepage.loc }}
+    latitude: {{ docker.conf.homepage.lat }}
+    longitude: {{ docker.conf.homepage.long }}
+    timezone: Europe/Berlin
+    units: metric
+    cache: 5
+    format:
+      maximumFractionDigits: 1
+
+- search:
+    provider: duckduckgo
+    target: _blank

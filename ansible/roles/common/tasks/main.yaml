@@ -1,0 +1,15 @@
+---
+- name: Install Default packages
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop: "{{ default_packages }}"
+
+- name: Install ZSH
+  ansible.builtin.include_tasks: 
+    file: zsh.yaml
+    apply:
+      tags:
+        - zsh
+  tags:
+    - zsh

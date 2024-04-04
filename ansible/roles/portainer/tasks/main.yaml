@@ -1,0 +1,14 @@
+---
+- name: Setup portainer
+  ansible.builtin.include_tasks: 
+    file: portainer.yaml
+    apply:
+      tags:
+        - portainer
+  when: docker.portainer
+
+- name: Portainer Env Dir
+  ansible.builtin.file:
+    path: ~/docker/homepage
+    state: directory
+
