@@ -29,8 +29,24 @@
         url: {{ docker.conf.portainer.url }}
         env: 2
         key: {{ docker.conf.portainer.key }}
-- Services:
-  - empty:
+- Home:
+  - Unifi:
+      icon: unifi.svg
+      href: https://{{ docker.conf.unifi.ip }}:8443
+      widget:
+        type: unifi
+        url: https://{{ docker.conf.unifi.ip }}:8443
+        username: {{ docker.conf.unifi.user }}
+        password: {{ docker.conf.unifi.pw }}
+        site: Default
+  - Monitoring:
+      icon: grafana.svg
+      href: {{ docker.conf.grafana.url }}
+      widget:
+        type: grafana
+        url: {{ docker.conf.grafana.url }}
+        username: {{ docker.conf.grafana.user }}
+        password: {{ docker.conf.grafana.pw }}
 - External:
   - whoami:
       href: https://whoami.nce.wtf
