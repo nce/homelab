@@ -1,0 +1,3 @@
+DEYE_IP="{{ docker.conf.deye.ip }}"
+DEYE_USER="{{ docker.conf.deye.user }}"
+DEYE_PASSWORD="{{ docker.conf.deye.pw }}"

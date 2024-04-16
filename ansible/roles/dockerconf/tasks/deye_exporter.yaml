@@ -1,0 +1,10 @@
+- name: Deye Dir
+  ansible.builtin.file:
+    path: /portainer/env_files/deye
+    state: directory
+
+- name: Deye Exporter Access
+  ansible.builtin.template:
+    src: deye/config
+    dest: /portainer/env_files/deye/.env
+

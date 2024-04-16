@@ -1,0 +1,63 @@
+services:
+  grafana:
+    image: grafana/grafana:10.4.2
+    container_name: grafana
+    restart: unless-stopped
+    networks:
+      - monitoring
+      - proxy
+    environment:
+     - GF_SERVER_ROOT_URL=https://monitoring.nce.wtf
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.monitoring.rule=Host(`monitoring.home.nce.wtf`)"
+      - "traefik.http.services.monitoring.loadbalancer.server.port=3000"
+      - "traefik.http.routers.monitoring.entrypoints=websecure"
+    volumes:
+     - 'grafana_storage:/var/lib/grafana'
+
+  prometheus:
+    image: prom/prometheus:v2.51.2
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - /home/nce/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_storage:/prometheus
+    command:
+      - '--web.enable-admin-api'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=790d'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+     - '9090:9090'
+    networks:
+      - monitoring
+
+  solar_exporter:
+    image: ghcr.io/towipf/deye-solar-exporter:master
+    container_name: solar_exporter
+    restart: always
+    networks:
+      - monitoring
+    env_file:
+      - /env_files/deye/.env
+    environment:
+      - TZ=Europe/Berlin
+      - PGID=1000
+      - PUID=1000
+      
+volumes:
+  grafana_storage:
+    external: false
+  prometheus_storage:
+    external: false
+
+networks:
+  monitoring:
+    driver: bridge
+  proxy:
+    external: true

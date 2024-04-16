@@ -14,3 +14,11 @@
       tags:
         - homepage
   when: docker.homepage
+
+- name: Config Deye Exporter
+  ansible.builtin.include_tasks: 
+    file: deye_exporter.yaml
+    apply:
+      tags:
+        - deye
+  when: docker.prometheus.deye

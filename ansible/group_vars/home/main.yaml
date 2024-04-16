@@ -11,4 +11,6 @@ docker:
   homepage: true
   traefik: true
   adguard: true
-  deye_exporter: true
+  monitoring: true
+  prometheus:
+    deye: true

@@ -8,7 +8,7 @@
 
 - name: Setup portainer
   ansible.builtin.template:
-    src: portainer.yaml
+    src: docker-compose.yaml
     dest: ~/docker/portainer/docker-compose.yaml
 
 - name: Deploy portainer
