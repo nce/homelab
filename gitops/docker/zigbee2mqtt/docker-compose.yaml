@@ -1,0 +1,48 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2.0.18
+    container_name: mqtt
+    restart: unless-stopped
+    networks:
+      - mqtt
+    volumes:
+      - "mosquitto-storage:/mosquitto"
+    command: "mosquitto -c /mosquitto-no-auth.conf"
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    restart: unless-stopped
+    image: koenkk/zigbee2mqtt:1.36.1
+    networks:
+      - mqtt
+      - proxy
+    volumes:
+      - zigbee2mqtt-storage:/app/data
+      - /home/nce/docker/zigbee2mqtt/config.yaml:/app/data/configuration.yaml
+      - /run/udev:/run/udev:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.zigbee.rule=Host(`zigbee.home.nce.wtf`)"
+      - "traefik.http.services.zigbee.loadbalancer.server.port=8080"
+      - "traefik.http.routers.zigbee.entrypoints=websecure"
+    group_add:
+      - dialout
+    environment:
+      - TZ=Europe/Berlin
+    devices:
+      - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2461586-if00:/dev/ttyACM0
+
+
+networks:
+  mqtt:
+    driver: bridge
+    name: mqtt
+  proxy:
+    external: false
+
+volumes:
+  mosquitto-storage:
+    external: false
+  zigbee2mqtt-storage:
+    external: false

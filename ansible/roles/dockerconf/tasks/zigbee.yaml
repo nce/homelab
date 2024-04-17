@@ -1,0 +1,18 @@
+---
+- name: Zigbee Dir
+  ansible.builtin.file:
+    path: ~/docker/zigbee2mqtt
+    state: directory
+
+- name: Zigbee Config
+  ansible.builtin.template:
+    src: zigbee/config.yaml
+    dest: ~/docker/zigbee2mqtt/config.yaml
+
+# usb device not readable by docker user
+- name: add docker user to dialout group
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: dialout
+    append: true

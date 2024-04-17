@@ -12,5 +12,6 @@ docker:
   traefik: true
   adguard: true
   monitoring: true
+  zigbee: true
   prometheus:
     deye: true

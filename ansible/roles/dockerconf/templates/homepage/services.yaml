@@ -39,14 +39,23 @@
         username: {{ docker.conf.unifi.user }}
         password: {{ docker.conf.unifi.pw }}
         site: Default
-  - Monitoring:
+  - Grafana:
       icon: grafana.svg
       href: {{ docker.conf.grafana.url }}
+      container: grafana
       widget:
         type: grafana
         url: {{ docker.conf.grafana.url }}
         username: {{ docker.conf.grafana.user }}
         password: {{ docker.conf.grafana.pw }}
+  - Prometheus:
+      icon: prometheus.svg
+      href: {{ docker.conf.prometheus.url }}
+      container: prometheus
+      widget:
+        type: prometheus
+        url: {{ docker.conf.prometheus.url }}
+
 - External:
   - whoami:
       href: https://whoami.nce.wtf
