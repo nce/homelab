@@ -40,7 +40,7 @@ networks:
     name: mqtt
   proxy:
     name: proxy
-    external: false
+    external: true
 
 volumes:
   mosquitto-storage:
