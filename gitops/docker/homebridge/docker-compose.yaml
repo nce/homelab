@@ -1,0 +1,34 @@
+services:
+  homebridge:
+    image: homebridge/homebridge:2024-01-08
+    container_name: homebridge
+    restart: unless-stopped
+    networks:
+      - mqtt
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"  
+      - "traefik.http.services.homebridge.loadbalancer.server.port=8581"
+      - "traefik.http.routers.homebridge.rule=Host(`homebridge.home.nce.wtf`)"
+      - "traefik.http.routers.homebridge.entrypoints=websecure"
+    ports:
+      - "51243:51243"
+    environment:
+      - TZ=Europe/Berlin
+      - PGID=1000
+      - PUID=1000
+      - HOMEBRIDGE_CONFIG_UI=1
+      - HOMEBRIDGE_CONFIG_UI_PORT=8581
+    volumes:
+      - homebridge_storage:/homebridge
+
+volumes:
+  homebridge_storage:
+    external: false
+
+networks:
+  proxy:
+    external: true
+  mqtt:
+    external: true
