@@ -39,6 +39,7 @@ networks:
     driver: bridge
     name: mqtt
   proxy:
+    name: proxy
     external: false
 
 volumes:
