@@ -53,7 +53,7 @@ services:
   draytek_exporter:
     image: quay.io/superq/draytek-exporter-linux-amd64:main
     restart: unless-stopped
-    container_name: solar_exporter
+    container_name: draytek_exporter
     networks:
       - monitoring
     command:
