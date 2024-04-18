@@ -40,7 +40,7 @@ services:
   solar_exporter:
     image: ghcr.io/towipf/deye-solar-exporter:master
     container_name: solar_exporter
-    restart: always
+    restart: unless-stopped
     networks:
       - monitoring
     env_file:
@@ -49,7 +49,24 @@ services:
       - TZ=Europe/Berlin
       - PGID=1000
       - PUID=1000
-      
+
+  draytek_exporter:
+    image: quay.io/superq/draytek-exporter-linux-amd64:main
+    restart: unless-stopped
+    container_name: solar_exporter
+    networks:
+      - monitoring
+    command:
+      - "--username admin"
+      - "--target 192.168.1.4"
+    env_file:
+      - /env_files/draytek/.env
+    environment:
+      - TZ=Europe/Berlin
+      - PGID=1000
+      - PUID=1000
+
+
 volumes:
   grafana_storage:
     external: false
