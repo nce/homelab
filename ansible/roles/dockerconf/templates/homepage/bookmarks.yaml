@@ -1,11 +1,16 @@
----
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/bookmarks
 
-- Developer:
-    - Github:
-        - abbr: GH
-          href: https://github.com/
+- Dev:
+    - Homelab:
+        - abbr: HL
+          icon: github.svg
+          href: https://github.com/nce/homelab
+    - OCI:
+        - abbr: OCI
+          icon: github.svg
+          href: https://github.com/nce/oci-free-cloud-k8s
+
 
 - Social:
     - Reddit:

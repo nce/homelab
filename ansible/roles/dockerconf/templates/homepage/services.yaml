@@ -1,63 +1,76 @@
----
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/services
 # Icons: https://github.com/walkxcode/dashboard-icons/tree/main
 
 - Homelab:
-  - Adguard:
-      icon: adguard-home.svg
-      href: {{ docker.conf.adguard.url }}
-      container: adguardhome
-      widget:
-        type: adguard
-        url: {{ docker.conf.adguard.url }}
-        username: admin
-        password: {{ docker.conf.adguard.pw }}
-  - Traefik:
-      icon: traefik.svg
-      href: {{ docker.conf.traefik.url }}
-      container: traefik
-      widget:
-        type: traefik
-        url: {{ docker.conf.traefik.url }}
-  - Portainer:
-      icon: portainer.svg
-      href: {{ docker.conf.portainer.url }}
-      container: portainer-portainer-1
-      widget:
-        type: portainer
-        url: {{ docker.conf.portainer.url }}
-        env: 2
-        key: {{ docker.conf.portainer.key }}
+    - Adguard:
+        icon: adguard-home.svg
+        href: {? {docker.conf.adguard.url: ''} : ''}
+        container: adguardhome
+        widget:
+          type: adguard
+          url: {? {docker.conf.adguard.url: ''} : ''}
+          username: admin
+          password: {? {docker.conf.adguard.pw: ''} : ''}
+    - Traefik:
+        icon: traefik.svg
+        href: {? {docker.conf.traefik.url: ''} : ''}
+        container: traefik
+        widget:
+          type: traefik
+          url: {? {docker.conf.traefik.url: ''} : ''}
+    - Portainer:
+        icon: portainer.svg
+        href: {? {docker.conf.portainer.url: ''} : ''}
+        container: portainer-portainer-1
+        widget:
+          type: portainer
+          url: {? {docker.conf.portainer.url: ''} : ''}
+          env: 2
+          key: {? {docker.conf.portainer.key: ''} : ''}
+    - Prometheus:
+        icon: prometheus.svg
+        href: {? {docker.conf.prometheus.url: ''} : ''}
+        container: prometheus
+        widget:
+          type: prometheus
+          url: {? {docker.conf.prometheus.url: ''} : ''}
+
 - Home:
-  - Unifi:
-      icon: unifi.svg
-      href: https://{{ docker.conf.unifi.ip }}:8443
-      widget:
-        type: unifi
-        url: https://{{ docker.conf.unifi.ip }}:8443
-        username: {{ docker.conf.unifi.user }}
-        password: {{ docker.conf.unifi.pw }}
-        site: Default
-  - Grafana:
-      icon: grafana.svg
-      href: {{ docker.conf.grafana.url }}
-      container: grafana
-      widget:
-        type: grafana
-        url: {{ docker.conf.grafana.url }}
-        username: {{ docker.conf.grafana.user }}
-        password: {{ docker.conf.grafana.pw }}
-  - Prometheus:
-      icon: prometheus.svg
-      href: {{ docker.conf.prometheus.url }}
-      container: prometheus
-      widget:
-        type: prometheus
-        url: {{ docker.conf.prometheus.url }}
+    - Unifi:
+        icon: unifi.svg
+        href: https://{{ docker.conf.unifi.ip }}:8443
+        widget:
+          type: unifi
+          url: https://{{ docker.conf.unifi.ip }}:8443
+          username: {? {docker.conf.unifi.user: ''} : ''}
+          password: {? {docker.conf.unifi.pw: ''} : ''}
+          site: Default
+    - Grafana:
+        icon: grafana.svg
+        href: {? {docker.conf.grafana.url: ''} : ''}
+        container: grafana
+        widget:
+          type: grafana
+          url: {? {docker.conf.grafana.url: ''} : ''}
+          username: {? {docker.conf.grafana.user: ''} : ''}
+          password: {? {docker.conf.grafana.pw: ''} : ''}
+    - Homebridge:
+        icon: homebridge.svg
+        href: {? {docker.conf.homebridge.url: ''} : ''}
+        container: homebridge
+        widget:
+          type: homebridge
+          url: {? {docker.conf.homebridge.url: ''} : ''}
+          username: {? {docker.conf.homebridge.user: ''} : ''}
+          password: {? {docker.conf.homebridge.pw: ''} : ''}
+    - Zigbee:
+        icon: zigbee2mqtt.svg
+        container: zigbee2mqtt
+        href: {? {docker.conf.zigbee.url: ''} : ''}
 
 - External:
-  - whoami:
-      href: https://whoami.nce.wtf
-      icon: ghost-light.png
-      siteMonitor: https://whoami.nce.wtf
+    - whoami:
+        href: https://whoami.nce.wtf
+        icon: ghost-light.png
+        siteMonitor: https://whoami.nce.wtf
