@@ -13,5 +13,4 @@ docker:
   adguard: true
   monitoring: true
   zigbee: true
-  prometheus:
-    deye: true
+  homebridge: true

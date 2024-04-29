@@ -1,0 +1,24 @@
+# This setup is required to run homebridge without bridge_network
+- name: Install Homebridge additional packages
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop:
+    - avahi-daemon
+    - jq
+
+- name: Bin Dir
+  ansible.builtin.file:
+    path: ~/bin
+    state: directory
+
+- name: Avahi Setup
+  ansible.builtin.template:
+    src: homebridge/generate_service.sh
+    dest: ~/bin/generate_avahi_service.sh
+    mode: '0750'
+
+- name: Generate Avahi Service
+  become: true
+  ansible.builtin.shell: /home/nce/bin/generate_avahi_service.sh
+  #  ansible.builtin.command: /usr/bin/bash /home/nce/bin/generate_avahi_service.sh

@@ -7,7 +7,7 @@ services:
       - monitoring
       - proxy
     environment:
-     - GF_SERVER_ROOT_URL=https://monitoring.nce.wtf
+      - GF_SERVER_ROOT_URL=https://monitoring.home.nce.wtf
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
@@ -15,7 +15,7 @@ services:
       - "traefik.http.services.monitoring.loadbalancer.server.port=3000"
       - "traefik.http.routers.monitoring.entrypoints=websecure"
     volumes:
-     - 'grafana_storage:/var/lib/grafana'
+      - 'grafana_storage:/var/lib/grafana'
 
   prometheus:
     image: prom/prometheus:v2.51.2
@@ -33,7 +33,7 @@ services:
       - '--web.console.templates=/etc/prometheus/consoles'
       - '--web.enable-lifecycle'
     ports:
-     - '9090:9090'
+      - '9090:9090'
     networks:
       - monitoring
 
@@ -49,23 +49,6 @@ services:
       - TZ=Europe/Berlin
       - PGID=1000
       - PUID=1000
-
-  draytek_exporter:
-    image: quay.io/superq/draytek-exporter-linux-amd64:main
-    restart: unless-stopped
-    container_name: draytek_exporter
-    networks:
-      - monitoring
-    command:
-      - "--username=admin"
-      - "--target=192.168.1.4"
-    env_file:
-      - /env_files/draytek/.env
-    environment:
-      - TZ=Europe/Berlin
-      - PGID=1000
-      - PUID=1000
-
 
 volumes:
   grafana_storage:

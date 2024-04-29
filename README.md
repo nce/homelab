@@ -1,13 +1,17 @@
 # Ansible
 I'll try to gather all my automations/server setups here
 
+#### Homepage Icons
+* https://pictogrammers.com/library/mdi/
+* https://github.com/walkxcode/dashboard-icons/tree/main
+
 ## Home
 All homeserver/home related IT stuff
 
 ### home:t8
 
 #### Initial Setup
-Currently provisioned with debian12 
+Currently provisioned with debian12
 
 1. Default user account ssh setup
 ```bash
