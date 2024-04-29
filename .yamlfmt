@@ -1,0 +1,9 @@
+extensions:
+  - yaml
+
+#exclude:
+
+formatter:
+  type: basic
+  max_line_length: 150
+  retain_line_breaks: true
