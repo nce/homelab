@@ -7,6 +7,7 @@ mqtt:
 # Zigbee Adapter path
 serial:
   port: /dev/ttyUSB0
+  adapter: deconz
 # Enable the Zigbee2MQTT frontend
 frontend:
   port: 8080
