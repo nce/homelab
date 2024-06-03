@@ -1,6 +1,6 @@
 services:
   grafana:
-    image: grafana/grafana:10.4.2
+    image: grafana/grafana:10.4.3
     container_name: grafana
     restart: unless-stopped
     networks:
@@ -18,7 +18,7 @@ services:
       - 'grafana_storage:/var/lib/grafana'
 
   prometheus:
-    image: prom/prometheus:v2.51.2
+    image: prom/prometheus:v2.52.0
     container_name: prometheus
     restart: unless-stopped
     volumes:
