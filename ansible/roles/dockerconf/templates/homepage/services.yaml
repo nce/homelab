@@ -64,16 +64,18 @@
           url: {{ docker.conf.homebridge.url }}
           username: {{ docker.conf.homebridge.user }}
           password: {{ docker.conf.homebridge.pw }}
+    - Plex:
+        icon: plex.svg
+        container: plex
+        widget:
+          type: plex
+          url: "http://{{ ansible_host }}:32400"
+          key: {{ docker.conf.plex.pw }}
+          fields: ["streams", "movies", "tv"]
     - Zigbee:
         icon: zigbee2mqtt.svg
         container: zigbee2mqtt
         href: {{ docker.conf.zigbee.url }}
-    - Plex:
-      icon: plex.svg
-      container: plex
-      widget:
-        type: plex
-        url: {{ ansible_host }}:32400
 
 - External:
     - whoami:
