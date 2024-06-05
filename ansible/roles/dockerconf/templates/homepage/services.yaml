@@ -39,10 +39,10 @@
 - Home:
     - Unifi:
         icon: unifi.svg
-        href: https://{{ docker.conf.unifi.ip }}:8443
+        href: https://{{  docker.conf.unifi.ip }}:8443
         widget:
           type: unifi
-          url: https://{{ docker.conf.unifi.ip }}:8443
+          url: https://{{  docker.conf.unifi.ip }}:8443
           username: {? {docker.conf.unifi.user: ''} : ''}
           password: {? {docker.conf.unifi.pw: ''} : ''}
           site: Default

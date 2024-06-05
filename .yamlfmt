@@ -1,7 +1,8 @@
 extensions:
   - yaml
 
-#exclude:
+exclude:
+  - "**/homepage/services.yaml"
 
 formatter:
   type: basic
