@@ -29,3 +29,11 @@
       tags:
         - homebridge
   when: docker.homebridge
+
+- name: Config Plex
+  ansible.builtin.include_tasks:
+    file: plex.yaml
+    apply:
+      tags:
+        - plex
+  when: docker.plex

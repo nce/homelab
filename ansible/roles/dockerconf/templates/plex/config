@@ -1,0 +1,1 @@
+ADVERTISE_IP={{ ansible_host }}:32400

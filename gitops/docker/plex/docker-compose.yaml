@@ -1,0 +1,15 @@
+services:
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker:1.40.2.8395-c67dce28e
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+      - ADVERTISE_IP=192.168.1.221:32400
+    network_mode: host
+    volumes:
+      - /portainer/plex/db:/config
+      - /portainer/plex/tmp:/transcode
+      - /portainer/plex/media:/data
+    env_file:
+      - /env_files/plex/.env

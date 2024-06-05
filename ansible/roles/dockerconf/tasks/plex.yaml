@@ -1,0 +1,19 @@
+- name: plex
+  ansible.builtin.file:
+    path: /portainer/plex/{{ item }}
+    state: directory
+  loop:
+    - db
+    - media/movies
+    - media/series
+    - tmp
+
+- name: Plex Docker Dir
+  ansible.builtin.file:
+    path: /portainer/env_files/plex
+    state: directory
+
+- name: Plex Env Setup
+  ansible.builtin.template:
+    src: plex/config
+    dest: /portainer/env_files/plex/.env

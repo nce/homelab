@@ -68,6 +68,12 @@
         icon: zigbee2mqtt.svg
         container: zigbee2mqtt
         href: {{ docker.conf.zigbee.url }}
+    - Plex:
+      icon: plex.svg
+      container: plex
+      widget:
+        type: plex
+        url: {{ ansible_host }}:32400
 
 - External:
     - whoami:

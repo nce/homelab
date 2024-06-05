@@ -21,4 +21,5 @@
 - name: Generate Avahi Service
   become: true
   ansible.builtin.shell: /home/nce/bin/generate_avahi_service.sh
+  ignore_errors: true
   #  ansible.builtin.command: /usr/bin/bash /home/nce/bin/generate_avahi_service.sh
