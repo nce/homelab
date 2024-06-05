@@ -22,6 +22,7 @@ services:
   webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:2.9.0
     restart: unless-stopped
+    container_name: paperless
     networks:
       - proxy
       - paperless

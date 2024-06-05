@@ -72,6 +72,14 @@
           url: "http://{{ ansible_host }}:32400"
           key: {{ docker.conf.plex.pw }}
           fields: ["streams", "movies", "tv"]
+    - Paperless:
+        icon: paperless-ngx.svg
+        container: paperless
+        widget:
+          type: paperlessngx
+          url: https://paper.home.nce.wtf
+          username: admin
+          password: {{ docker.conf.paperless.pw }}
     - Zigbee:
         icon: zigbee2mqtt.svg
         container: zigbee2mqtt
