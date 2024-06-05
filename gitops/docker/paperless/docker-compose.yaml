@@ -1,0 +1,59 @@
+services:
+  broker:
+    image: docker.io/library/redis:7.2.5
+    restart: unless-stopped
+    networks:
+      - paperless
+    volumes:
+      - redisdata:/data
+
+  db:
+    image: docker.io/library/postgres:16.3
+    restart: unless-stopped
+    networks:
+      - paperless
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: paperless
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.9.0
+    restart: unless-stopped
+    networks:
+      - proxy
+      - paperless
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.paper.rule=Host(`paper.home.nce.wtf`)"
+      - "traefik.http.services.paper.loadbalancer.server.port=8000"
+      - "traefik.http.routers.paper.entrypoints=websecure"
+    depends_on:
+      - db
+      - broker
+    volumes:
+      - data:/usr/src/paperless/data
+      - media:/usr/src/paperless/media
+      - ./export:/usr/src/paperless/export
+      - ./consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_URL: https://paper.home.nce.wtf
+      USERMAP_UID: 1000
+      USERMAP_GID: 100
+
+
+volumes:
+  data:
+  media:
+  pgdata:
+  redisdata:
+
+networks:
+  paperless:
+  proxy:
+    external: true
