@@ -12,6 +12,4 @@ docker:
   traefik: true
   adguard: true
   monitoring: true
-  zigbee: true
-  homebridge: true
   plex: true

@@ -55,15 +55,6 @@
           url: {{ docker.conf.grafana.url }}
           username: {{ docker.conf.grafana.user }}
           password: {{ docker.conf.grafana.pw }}
-    - Homebridge:
-        icon: homebridge.svg
-        href: {{ docker.conf.homebridge.url }}
-        container: homebridge
-        widget:
-          type: homebridge
-          url: {{ docker.conf.homebridge.url }}
-          username: {{ docker.conf.homebridge.user }}
-          password: {{ docker.conf.homebridge.pw }}
     - Plex:
         icon: plex.svg
         container: plex
@@ -75,15 +66,12 @@
     - Paperless:
         icon: paperless-ngx.svg
         container: paperless
+        href: https://paper.home.nce.wtf
         widget:
           type: paperlessngx
           url: https://paper.home.nce.wtf
           username: admin
           password: {{ docker.conf.paperless.pw }}
-    - Zigbee:
-        icon: zigbee2mqtt.svg
-        container: zigbee2mqtt
-        href: {{ docker.conf.zigbee.url }}
 
 - External:
     - whoami:
