@@ -14,22 +14,6 @@
         - homepage
   when: docker.homepage
 
-- name: Config Zigbee Adapter
-  ansible.builtin.include_tasks:
-    file: zigbee.yaml
-    apply:
-      tags:
-        - zigbee
-  when: docker.zigbee
-
-- name: Config Homebridge
-  ansible.builtin.include_tasks:
-    file: homebridge.yaml
-    apply:
-      tags:
-        - homebridge
-  when: docker.homebridge
-
 - name: Config Plex
   ansible.builtin.include_tasks:
     file: plex.yaml
