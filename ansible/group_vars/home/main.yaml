@@ -14,3 +14,4 @@ docker:
   monitoring: true
   plex: false
   samba: true
+  paperless: true
