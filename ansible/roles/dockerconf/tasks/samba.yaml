@@ -1,0 +1,14 @@
+- name: samba
+  ansible.builtin.file:
+    path: /portainer/samba/
+    state: directory
+
+- name: samba Docker Dir
+  ansible.builtin.file:
+    path: /portainer/env_files/samba
+    state: directory
+
+- name: samba Env Setup
+  ansible.builtin.template:
+    src: samba/config
+    dest: /portainer/env_files/samba/.env

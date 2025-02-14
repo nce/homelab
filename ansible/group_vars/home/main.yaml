@@ -12,4 +12,5 @@ docker:
   traefik: true
   adguard: true
   monitoring: true
-  plex: true
+  plex: false
+  samba: true

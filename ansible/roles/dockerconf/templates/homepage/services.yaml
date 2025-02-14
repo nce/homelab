@@ -70,7 +70,7 @@
         widget:
           type: paperlessngx
           url: https://paper.home.nce.wtf
-          username: admin
+          username: homepage
           password: {{ docker.conf.paperless.pw }}
 
 - External:

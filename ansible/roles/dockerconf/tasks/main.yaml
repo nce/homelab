@@ -21,3 +21,12 @@
       tags:
         - plex
   when: docker.plex
+
+- name: Config samba
+  ansible.builtin.include_tasks:
+    file: samba.yaml
+    apply:
+      tags:
+        - samba
+  when: docker.samba
+

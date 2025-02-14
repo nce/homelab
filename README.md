@@ -28,6 +28,7 @@ echo "nce ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 ### Run Ansible
 ```bash
+ansible-galaxy install -r ansible/requirements.yaml
 # Limited to this machine
 ansible-playbook -l t8 site.yaml
 ```

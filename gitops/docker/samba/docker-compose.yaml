@@ -1,0 +1,14 @@
+services:
+  samba:
+    image: dockurr/samba:4.21.3
+    container_name: samba
+    environment:
+      NAME: "Data"
+      USER: "samba"
+    ports:
+      - 445:445
+    volumes:
+      - /portainer/paperless:/storage
+    restart: always
+    env_file:
+      - /env_files/samba/.env
