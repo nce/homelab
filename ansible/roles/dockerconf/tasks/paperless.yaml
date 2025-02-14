@@ -1,0 +1,9 @@
+- name: paperless Docker Dir
+  ansible.builtin.file:
+    path: /portainer/env_files/paperless
+    state: directory
+
+- name: paperless Env Setup
+  ansible.builtin.template:
+    src: paperless/config
+    dest: /portainer/env_files/paperless/.env
