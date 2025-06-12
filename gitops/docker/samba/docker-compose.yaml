@@ -1,6 +1,6 @@
 services:
   samba:
-    image: dockurr/samba:4.21.4
+    image: dockurr/samba:4.21.6
     container_name: samba
     environment:
       NAME: "Data"
