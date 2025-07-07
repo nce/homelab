@@ -1,9 +1,10 @@
----
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:v1.3.2
     container_name: homepage
     restart: unless-stopped
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: home.nce.wtf
     networks:
       - proxy
     volumes:
