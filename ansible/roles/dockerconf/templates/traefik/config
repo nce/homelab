@@ -1,6 +1,2 @@
-OCI_PRIVKEY_FILE="/run/secrets/api_private_key"
-OCI_TENANCY_OCID="{{ docker.conf.traefik.tenancy_oicd }}"
-OCI_USER_OCID="{{ docker.conf.traefik.user_oicd }}"
-OCI_PUBKEY_FINGERPRINT="{{ docker.conf.traefik.pubkey_fingerprint }}"
-OCI_REGION="eu-frankfurt-1"
-OCI_COMPARTMENT_OCID="{{ docker.conf.traefik.tenancy_oicd }}"
+CF_API_EMAIL="{{ docker.conf.traefik.email }}"
+CF_DNS_API_TOKEN="{{ docker.conf.traefik.token }}"

@@ -1,4 +1,3 @@
----
 - name: Traefik Dir
   ansible.builtin.file:
     path: ~/docker/traefik
@@ -9,14 +8,7 @@
     path: /portainer/env_files/traefik
     state: directory
 
-# for dns management
-- name: Traefik Private Key Setup
-  ansible.builtin.template:
-    src: traefik/api_private_key.pem
-    dest: ~/docker/traefik/api_private_key.pem
-
 - name: Traefik DNS Setup
   ansible.builtin.template:
     src: traefik/config
     dest: /portainer/env_files/traefik/.env
-
