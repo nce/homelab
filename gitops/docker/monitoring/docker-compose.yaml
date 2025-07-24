@@ -18,7 +18,7 @@ services:
       - 'grafana_storage:/var/lib/grafana'
 
   prometheus:
-    image: prom/prometheus:v3.4.2
+    image: prom/prometheus:v3.5.0
     container_name: prometheus
     restart: unless-stopped
     volumes:
