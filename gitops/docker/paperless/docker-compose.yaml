@@ -1,6 +1,6 @@
 services:
   broker:
-    image: docker.io/library/redis:8.0.3
+    image: docker.io/library/redis:8.2.0
     restart: unless-stopped
     networks:
       - paperless
