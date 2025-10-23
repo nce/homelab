@@ -1,6 +1,6 @@
 services:
   broker:
-    image: docker.io/library/redis:8.2.1
+    image: docker.io/library/redis:8.2.2
     restart: unless-stopped
     networks:
       - paperless
@@ -21,7 +21,7 @@ services:
       - /env_files/paperless/.env
 
   webserver:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.18.4
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.19.2
     restart: unless-stopped
     container_name: paperless
     networks:
