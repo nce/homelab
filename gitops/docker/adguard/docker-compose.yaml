@@ -1,7 +1,7 @@
 services:
   adguardhome:
     container_name: adguardhome
-    image: adguard/adguardhome:v0.107.68
+    image: adguard/adguardhome:v0.107.69
     networks:
       - proxy
     ports:
